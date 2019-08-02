@@ -1,0 +1,201 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+        $i: 6;
+
+        @while $i <= 32 {
+            .font#{$infix}-#{$i} {
+                font-size: 0rem + $i / 16;
+            }
+
+            $i: $i + 1;
+        }
+
+        $i: 100;
+
+        @while $i < 1000 {
+            .fw#{$infix}-#{$i} {
+                font-weight: $i;
+            }
+
+            $i: $i + 100;
+        }
+    }
+}
+
+#nav-2 {
+    .nav-item:not(.active) {
+        .nav-link {
+            color: $white;
+
+            //text-shadow: 1px 1px 1px rgba($white, 10%);
+       
+        }
+    }
+}
+
+@include media-breakpoint-up("md") {
+    .navbar {
+        font-weight: 600;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .nav-item {
+            &:not(:last-child) {
+                border-right: 1px solid rgba($gray-500, 20%);
+            }
+        }
+
+        .nav-link {
+            font-size: 0.85rem;
+        }
+
+        .active {
+            background: $pdgreen;
+            height: calc(parent(attr(height)));
+
+            .nav-link {
+                color: $black !important;
+            }
+        }
+    }
+}
+
+
+@include media-breakpoint-down("sm") {
+    .navbar-brand {
+        padding: 0;
+
+        img {
+            padding: 2px 0;
+            height: calc(parent(attr(height)));
+        }
+    }
+}
+
+
+.section {
+    background: $black;
+    width: 100%;
+    display: inline-flex;
+
+    .section-title {
+        font-size: 0.875rem;
+        background: $pdgreen;
+        display: inline;
+        margin: 0 15px;
+        height: 100%;
+        color: white;
+
+        a {
+            color: white;
+        }
+
+        &:before {
+            content: "*";
+            clip-path: polygon(0 0, 50% 0, 100% 100%, 0% 100%);
+            background: $black;
+            width: 10px;
+            margin-right: 10px;
+            display: inline-flex;
+            color: $black;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        &:after {
+            content: "*";
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%);
+            background: $black;
+            width: 10px;
+            margin-left: 10px;
+            display: inline-flex;
+            color: $black;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    }
+}
+
+footer {
+    li {
+        padding: 0 !important;
+        font-family: 'Nunito Sans' San-serif;
+
+        a {
+            color: $white;
+            padding: 0 !important;
+        }
+    }
+
+    p, h5 {
+        font-family: 'Nunito Sans' San-serif;
+    }
+
+    .footer-2 {
+        background: rgba($white, 10%);
+        font-family: roboto;
+        font-weight: 400;
+    }
+}
+
+#content {
+    white-space: wrap;
+    font-weight: 500;
+
+    figure {
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            text-align: center;
+            background: rgba($black, 50%);
+            color: $white;
+            bottom: 0;
+        }
+    }
+
+    p {
+        font-size: 1rem;
+        font-family: Raleway,sans-serif;
+        line-height: 35px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-family: "Nunito Sans" sans-serif;
+        font-weight: 700;
+    }
+}
+
+.summary {
+    width: 300px;
+}
+
+@mixin link-color($color) {
+    color: $color;
+
+    &:hover {
+        color: lighten($color, 16%);
+    }
+}
+
+@each $color, $value in $brand-colors {
+    .text-#{$color} {
+        @include link-color($value);
+    }
+}
+
+.nunito {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.montserrat {
+    font-family: Montserrat, sans-serif;
+}
+
+.raleway {
+    font-family: Raleway,sans-serif;
+}
